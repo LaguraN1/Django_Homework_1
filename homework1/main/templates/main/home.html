@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Welcome back, {{ request.user.first_name|default:request.user.username }}! 👋</h1>
+    <p>You have successfully logged in and accessed the protected home page.</p>
+    
+    <div style="margin-top: 2rem; padding: 1.5rem; background-color: #F3F4F6; border-radius: 8px; border: 1px solid #D1D5DB;">
+        <h3>Your Account Details:</h3>
+        <p><strong>Username:</strong> {{ request.user.username }}</p>
+        <p><strong>Email:</strong> {{ request.user.email|default:"None provided" }}</p>
+        <p><strong>Last Login:</strong> {{ request.user.last_login|date:"F j, Y, g:i a" }}</p>
+        <p><strong>Status:</strong> {% if request.user.is_staff %}Admin User{% else %}Standard User{% endif %}</p>
+    </div>
+{% endblock %}

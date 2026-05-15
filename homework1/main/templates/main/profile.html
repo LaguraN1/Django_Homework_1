@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+    <h2>My Profile Settings</h2>
+    
+    <div style="margin-bottom: 2rem; padding: 1rem; background-color: #f3f4f6; border-left: 4px solid var(--primary-color); border-radius: 4px;">
+        <p><strong>Username:</strong> {{ request.user.username }}</p>
+        <p><strong>Last Login:</strong> {{ request.user.last_login|date:"M d, Y H:i" }}</p>
+    </div>
+
+    <h3>Update Personal Information</h3>
+    <p class="helptext">You can change your names and email address below.</p>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update My Info</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+    <h2>Sign In to Your Account</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        {% if form.errors %}
+            <p style="color: #9B1C1C; font-weight: bold;">Invalid username or password.</p>
+        {% endif %}
+        
+        <button type="submit">Sign In</button>
+    </form>
+    
+    <p style="text-align: center; margin-top: 1.5rem;">
+        Don't have an account? <a href="{% url 'main:register' %}" style="color: var(--primary-color);">Register here</a>.
+    </p>
+{% endblock %}
